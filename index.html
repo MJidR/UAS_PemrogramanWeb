@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Laundry Kilat</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px 10px;
+      text-align: center;
+    }
+    header h1 span {
+      color: #1abc9c;
+    }
+    nav {
+      background-color: #34495e;
+      text-align: center;
+      padding: 10px 0;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .content {
+      padding: 30px;
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+    .hero {
+      text-align: center;
+    }
+    .hero img {
+      width: 150px;
+    }
+    .btn-pesan {
+      margin-top: 15px;
+      display: inline-block;
+      background-color: transparent;
+      color: #2980b9;
+      text-decoration: underline;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .card {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    form {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      text-align: left;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background-color: #3498db;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Selamat Datang di <span>Laundry Kilat</span></h1>
+    <p>Layanan laundry cepat, bersih, dan wangi</p>
+  </header>
+
+<nav>
+  <a onclick="showPage('beranda')">Beranda</a>
+  <a onclick="showPage('pemesanan')">Pemesanan</a>
+  <a onclick="showPage('tentang')">Tentang</a>
+  <a onclick="showPage('kontak')">Contact Us</a> <!-- Tambahkan ini -->
+</nav>
+
+  <!-- Beranda -->
+  <div id="beranda" class="content active">
+    <section style="text-align: center">
+      <img
+        src="background.png"
+        alt="Mesin Cuci Laundry"
+        style="max-width: 300px; margin-bottom: 20px"
+      />
+      <br />
+    </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tentang -->
+  <div id="tentang" class="content">
+    <h2 style="text-align:center;">Tentang Kami</h2>
+    <div class="card">
+      Laundry Kilat adalah layanan laundry cepat, bersih, dan wangi. Kami siap menjemput dan mengantar pakaian Anda dengan pelayanan terbaik dan tepat waktu.
+    </div>
+  </div>
+
+  <!-- Pemesanan -->
+  <div id="pemesanan" class="content">
+    <h2 style="text-align:center;">Form Pemesanan</h2>
+    <form onsubmit="cetakStruk(); return false;">
+      <label>Nama Pelanggan</label>
+      <input type="text" id="nama" required>
+
+      <label>Jenis Layanan</label>
+      <select id="layanan">
+        <option value="Reguler">Reguler - Rp7.000/kg</option>
+        <option value="Express">Express - Rp10.000/kg</option>
+      </select>
+
+      <label>Berat Cucian (kg)</label>
+      <input type="number" id="berat" required>
+
+      <button type="submit">Cetak Struk</button>
+    </form>
+  </div>
+
+  <!-- Contact Us -->
+   <div id="kontak" class="content">
+  <h2 style="text-align:center;">Hubungi Kami</h2>
+  <form onsubmit="kirimPesan(); return false;" style="max-width: 500px; margin: auto;">
+    <label>Nama Anda</label>
+    <input type="text" id="kontakNama" required>
+
+    <label>Email</label>
+    <input type="email" id="kontakEmail" required>
+
+    <label>Pesan</label>
+    <textarea id="kontakPesan" rows="5" required style="width:100%; padding:8px; border-radius:4px; border:1px solid #ccc;"></textarea>
+
+    <button type="submit">Kirim Pesan</button>
+  </form>
+</div>
+
+  <!-- Footer -->
+<body>
+  <div class="wrapper">
+
+    <!-- ISI WEBSITE DI SINI -->
+    <!-- ... header, nav, konten ... -->
+
+    <footer>
+      © Laundry Kilat By Muhammad Jidan R.
+    </footer>
+
+  </div>
+</body>
+
+  <script>
+    function showPage(id) {
+      const contents = document.querySelectorAll('.content');
+      contents.forEach(c => c.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function cetakStruk() {
+      const nama = document.getElementById("nama").value;
+      const layanan = document.getElementById("layanan").value;
+      const berat = parseFloat(document.getElementById("berat").value);
+      const harga = layanan === "Reguler" ? 7000 : 10000;
+      const total = harga * berat;
+
+      const struk = `
+        ===== STRUK LAUNDRY KILAT =====\n
+        Nama     : ${nama}
+        Layanan  : ${layanan}
+        Berat    : ${berat} kg
+        Total    : Rp ${total.toLocaleString()}\n
+        Terima kasih atas kepercayaan Anda!
+      `;
+
+      alert(struk);
+      window.print();
+    }
+  </script>
+
+</body>
+</html>
